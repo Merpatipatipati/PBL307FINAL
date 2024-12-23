@@ -1,0 +1,70 @@
+/* Custom button styles */
+.btn-custom {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Default button colors */
+.btn-outline-primary {
+    border-color: #007bff;
+    color: #007bff;
+    background-color: transparent;
+}
+
+.btn-outline-primary:hover {
+    border-color: #0056b3;
+    color: #fff;
+    background-color: #007bff;
+    transform: scale(1.05);
+}
+
+.btn-outline-info {
+    border-color: #17a2b8;
+    color: #17a2b8;
+    background-color: transparent;
+}
+
+.btn-outline-info:hover {
+    border-color: #138496;
+    color: #fff;
+    background-color: #17a2b8;
+    transform: scale(1.05);
+}
+
+.btn-outline-warning {
+    border-color: #ffc107;
+    color: #ffc107;
+    background-color: transparent;
+}
+
+.btn-outline-warning:hover {
+    border-color: #e0a800;
+    color: #fff;
+    background-color: #ffc107;
+    transform: scale(1.05);
+}
+
+.btn-outline-danger {
+    border-color: #dc3545;
+    color: #dc3545;
+    background-color: transparent;
+}
+
+.btn-outline-danger:hover {
+    border-color: #c82333;
+    color: #fff;
+    background-color: #dc3545;
+    transform: scale(1.05);
+}
+
+.btn-sm {
+    font-size: 0.875rem;
+    padding: 0.375rem 0.75rem;
+}
+
+/* Responsive Design */
+@media (max-width: 576px) {
+    .btn-sm {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
+    }
+}

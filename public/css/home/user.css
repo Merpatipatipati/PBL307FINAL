@@ -1,0 +1,191 @@
+/* General page layout */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container for profile page */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Title */
+h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #364360;
+}
+
+/* Profile photo container */
+.profile-photo-container {
+    position: relative;
+}
+
+#profilePhoto {
+    border: 5px solid #fff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#profilePhoto:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Form for photo upload */
+label {
+    background-color: #364360;
+    color: #fff;
+    padding: 8px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+label:hover {
+    background-color: #2c3e50;
+}
+
+/* User information */
+.text-center h4 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #364360;
+}
+
+.text-center p {
+    font-size: 18px;
+    color: #555;
+    margin: 10px 0;
+}
+
+/* Section titles */
+h4.font-weight-bold {
+    font-size: 22px;
+    color: #364360;
+    margin-bottom: 20px;
+}
+
+/* Product and Post Cards */
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    background-color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card img {
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+}
+
+.card img:hover {
+    transform: scale(1.05);
+}
+
+/* Product Info */
+.card h5 {
+    font-size: 20px;
+    color: #364360;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 16px;
+    color: #777;
+}
+
+/* Buttons */
+.btn {
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 14px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary {
+    background-color: #364360;
+    border-color: #364360;
+}
+
+.btn-outline-secondary {
+    color: #364360;
+    border: 2px solid #364360;
+}
+
+.btn-primary:hover, .btn-outline-secondary:hover {
+    background-color: #2c3e50;
+    border-color: #2c3e50;
+}
+
+.btn-primary:focus, .btn-outline-secondary:focus {
+    box-shadow: 0 0 0 0.25rem rgba(54, 67, 96, 0.5);
+}
+
+/* Alert */
+.alert-warning {
+    background-color: #f9e6a2;
+    color: #4f4f4f;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.alert {
+    border-radius: 5px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover Effects for Products and Posts */
+.card-body:hover {
+    background-color: #f7f9fc;
+}
+
+.card-body a {
+    text-decoration: none;
+}
+
+.card-body a:hover {
+    text-decoration: underline;
+}
+
+/* SweetAlert 2 Custom Styling */
+.swal2-popup {
+    font-size: 16px !important;
+}
+
+.swal2-title {
+    font-size: 18px;
+    color: #364360;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #aaa;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #666;
+}

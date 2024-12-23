@@ -1,0 +1,134 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  body {
+    height: 120vh; /* Ganti height menjadi 100vh untuk memastikan 100% dari tinggi viewport */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../WELCOME6.png'); /* Pastikan jalur gambar sudah sesuai */
+    background-size: contain; /* Menutupi seluruh layar */
+    background-position: center; /* Posisikan di tengah */
+    background-attachment: fixed; /* Agar gambar tetap di tempat saat di-scroll */
+    background-repeat: no-repeat; /* Mencegah pengulangan gambar */
+    background-origin: border-box;
+    overflow: hidden; /* Menonaktifkan scroll */
+}
+.overlay-text {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: #0740bc; /* Blue color */
+}
+
+.welcome-title {
+  font-size: 4rem; /* Larger font size */
+  font-weight: bold;
+  margin-bottom: 10px; /* Space between title and subtitle */
+}
+
+.subtitle {
+  font-size: 1.5rem; /* Slightly smaller than the title */
+  margin-bottom: 20px; /* Space between subtitle and the login box */
+}
+
+
+@media only screen and (max-width: 768px) {
+  body {
+      background-size: contain; /* Pada layar yang lebih kecil, ubah menjadi contain */
+  }
+}
+
+
+  
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .login-box {
+    background: rgb(255, 255, 255);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 32px rgba(31, 38, 135, 0.37);
+    text-align: center;
+    width: 350px;
+    color: #fff;
+  }
+  
+
+  .input-group {
+    margin-bottom: 25px;
+    text-align: left;
+  }
+  
+  .input-group label {
+    display: block;
+    font-size: 14px;
+    color: #000000;
+    margin-bottom: 5px;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 12px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #000000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+  }
+  
+  .input-group input:focus {
+    background-color: rgba(255, 255, 255, 0.3);
+    outline: none;
+  }
+  
+  button {
+    width: 100%;
+    padding: 12px;
+    background-color: #6e45e2;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #88d3ce;
+    transform: translateY(-2px);
+  }
+  
+  button:active {
+    transform: translateY(2px);
+  }
+  
+  p {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #000000;
+  }
+  
+  p a {
+    color: #0252ff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  p a:hover {
+    text-decoration: underline;
+  }
+  

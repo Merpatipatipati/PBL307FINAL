@@ -1,0 +1,185 @@
+/* Menambah margin dan padding untuk mengatur jarak kontainer dan elemen di dalamnya */
+.container {
+    padding: 0 15px;
+}
+
+/* Mengatur gambar produk agar responsif */
+.product-image img {
+    width: 100%; /* Agar gambar mengikuti lebar kontainer */
+    height: auto;
+    max-width: 100%; /* Menjaga ukuran gambar agar tidak lebih besar dari kontainer */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Mengatur agar teks di dalam kontainer tidak keluar */
+.product-info {
+    word-wrap: break-word; /* Membuat teks terpecah jika terlalu panjang */
+    overflow-wrap: break-word;
+    text-overflow: ellipsis;
+}
+
+/* Memberikan padding dan margin yang pas untuk elemen teks */
+.product-details p {
+    margin-bottom: 1rem;
+    font-size: 16px; /* Menjaga ukuran teks agar nyaman dibaca */
+}
+
+.product-details h3 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #007bff; /* Menonjolkan heading */
+}
+
+/* Membuat tombol responsif dan rapi */
+.btn-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    flex: 1;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    /* Menyesuaikan tampilan untuk perangkat kecil */
+    .col-lg-6, .col-md-12 {
+        margin-bottom: 1rem;
+    }
+
+    .product-info {
+        padding: 15px;
+    }
+}
+/* Gaya untuk Modal */
+.modal {
+    display: none; /* Modal disembunyikan secara default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Latar belakang transparan */
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-dialog {
+    background-color: white;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.modal-title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #000;
+    cursor: pointer;
+}
+
+/* Gaya untuk modal body */
+.modal-body {
+    padding: 15px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+textarea.form-control {
+    width: 100%;
+    resize: vertical;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.btn-success {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+/* Gaya untuk komentar */
+.comments-section {
+    margin-top: 50px;
+}
+
+.comments-section h3 {
+    font-size: 22px;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.comment-item {
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.comment-item p {
+    margin: 0;
+    font-size: 16px;
+}
+
+.comment-item strong {
+    color: #007bff;
+    font-weight: bold;
+}
+
+.comment-item small {
+    font-size: 12px;
+    color: #888;
+}
+
+/* Responsif untuk perangkat kecil */
+@media (max-width: 768px) {
+    .modal-dialog {
+        width: 90%;
+        max-width: 400px;
+    }
+
+    .comment-item {
+        padding: 10px;
+    }
+
+    .comments-section h3 {
+        font-size: 18px;
+    }
+
+    .form-control {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .btn-success {
+        padding: 8px 16px;
+    }
+}

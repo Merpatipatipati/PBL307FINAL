@@ -1,0 +1,102 @@
+/* Global Styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f4f8;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Card Produk */
+.product-card {
+    border: 1px solid #ddd; /* Memberikan border pada kartu produk */
+    border-radius: 12px; /* Sudut yang lebih melengkung */
+    background-color: #ffffff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+/* Efek Hover pada Kartu Produk */
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Gambar Produk */
+.product-image-wrapper {
+    height: 200px; /* Menyediakan tinggi untuk gambar */
+    overflow: hidden;
+}
+
+.product-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Memastikan gambar tidak terdistorsi */
+    transition: transform 0.3s ease;
+}
+
+.product-card img:hover {
+    transform: scale(1.05); /* Efek zoom saat gambar di-hover */
+}
+
+/* Informasi Produk */
+.card-body {
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+/* Judul Produk */
+.card-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    text-transform: uppercase; /* Menambah kesan tegas pada judul */
+}
+
+/* Deskripsi Produk */
+.card-text {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+/* Informasi Harga */
+.card-text strong {
+    font-size: 16px;
+    font-weight: 600;
+    color: #e67e22; /* Warna oranye untuk harga */
+}
+
+/* Detail Produk */
+.card-text small {
+    font-size: 12px;
+    color: #7f8c8d;
+}
+
+/* Mengatur jarak antar elemen di bawah produk */
+.card-body p:last-child {
+    margin-bottom: 0;
+}
+
+/* Responsif: Tata letak Kartu pada Layar Kecil */
+@media (max-width: 768px) {
+    .col-md-4 {
+        flex: 0 0 100%;
+        max-width: 100%;
+        padding: 5px; /* Menambah jarak antar kolom pada perangkat kecil */
+    }
+
+    .product-card {
+        padding: 15px;
+    }
+
+    .card-title {
+        font-size: 16px;
+    }
+
+    .card-text {
+        font-size: 12px;
+    }
+}

@@ -1,0 +1,152 @@
+/* Navbar */
+.navbar {
+    background-color: #ffffff;
+    padding: 12px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: 'Poppins', sans-serif;
+}
+
+.navbar .nav-link {
+    font-size: 16px;
+    font-weight: 500;
+    color: #343a40;
+    padding: 8px 12px;
+    transition: color 0.3s ease, padding 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.navbar .nav-link i {
+    margin-right: 8px;
+}
+
+.navbar .nav-link:hover {
+    color: #007bff;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #007bff;
+}
+
+/* Custom Link Styles for MarketPlace and Explore */
+.custom-nav-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.custom-nav-link:hover {
+    background-color: #f0f8ff;
+    color: #007bff;
+    box-shadow: 0 2px 6px rgba(0, 123, 255, 0.2);
+}
+
+.custom-nav-link i {
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+/* Navbar Dropdown */
+.navbar .dropdown-menu {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: none;
+}
+
+.navbar .dropdown-item {
+    font-size: 15px;
+    color: #343a40;
+    padding: 12px 20px;
+    transition: background-color 0.3s ease;
+}
+
+.navbar .dropdown-item:hover {
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+}
+
+.navbar .dropdown-toggle {
+    color: #343a40;
+    font-weight: 600;
+}
+
+.navbar .dropdown-toggle:hover {
+    color: #007bff;
+}
+
+/* Search Bar */
+.form-inline .form-control {
+    width: 250px;
+    border-radius: 25px;
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: 2px solid #007bff;
+    transition: border 0.3s ease;
+}
+
+.form-inline .form-control:focus {
+    border: 2px solid #0056b3;
+    box-shadow: 0 0 5px rgba(0, 86, 179, 0.5);
+}
+
+.form-inline .btn {
+    border-radius: 25px;
+    background-color: #007bff;
+    color: white;
+    padding: 8px 16px;
+    transition: background-color 0.3s ease;
+}
+
+.form-inline .btn:hover {
+    background-color: #0056b3;
+}
+
+/* Profile Dropdown */
+.btn-light {
+    border-radius: 50%;
+    padding: 12px;
+    font-size: 20px;
+    background-color: #f1f1f1;
+    border: 2px solid #007bff;
+    transition: background-color 0.3s ease;
+}
+
+.btn-light:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Footer */
+footer {
+    background-color: #343a40;
+    padding: 20px 0;
+}
+
+footer p {
+    font-size: 16px;
+    color: white;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .navbar .navbar-nav {
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .form-inline .form-control {
+        width: 200px;
+    }
+
+    .navbar .dropdown-menu {
+        position: static;
+    }
+
+    .form-inline .btn {
+        margin-top: 10px;
+    }
+}

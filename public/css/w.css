@@ -1,0 +1,219 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header Styles */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #f4f4f4;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 80px; /* Ganti ukuran logo */
+    margin-right: 20px;
+}
+
+h1 {
+    font-size: 1.8rem;
+    color: #333;
+}
+
+.search-section {
+    display: flex;
+    align-items: center;
+}
+
+.search-section input {
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Category Navigation Styles */
+.category-nav {
+    background-color: #333;
+    padding: 10px;
+    text-align: center;
+}
+
+.category-nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.category-nav a:hover {
+    color: #6b80ad;
+}
+
+/* Main Content Styles */
+.content {
+    padding: 40px 20px;
+    display: flex; /* Mengubah menjadi flexbox untuk menempatkan gambar dan teks di samping */
+}
+
+/* Update untuk Image Layout */
+.image-container {
+    display: flex; /* Susun gambar secara horizontal */
+    justify-content: space-between; /* Jarak antar gambar */
+    margin-right: 20px; /* Jarak kanan antara gambar dan teks */
+}
+
+.image-large {
+    width: 30%; /* Lebar gambar panjang */
+}
+
+.image-large img {
+    width: 100%;
+    height: auto; /* Sesuaikan tinggi gambar secara otomatis */
+    object-fit: cover;
+}
+
+/* Teks New Arrival dan Deskripsi */
+.text-container {
+    display: flex;
+    flex-direction: column; /* Tetap menjaga teks dalam satu kolom */
+    justify-content: center; /* Tengah secara vertikal */
+    align-items: flex-start; /* Rata kiri */
+    padding: 10px;
+}
+
+.new-arrival {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.description {
+    font-size: 1.2rem;
+    color: #555;
+    margin-top: 10px;
+}
+
+/* Button Styles */
+.view-button {
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.5); /* Transparansi 50% */
+    color: #6b80ad;
+    padding: 8px 15px; /* Perkecil ukuran button */
+    border-radius: 5px;
+    border: 1px solid #6b80ad;
+    text-decoration: none;
+    transition: all 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow */
+}
+
+.view-button:hover {
+    background-color: #6b80ad;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Shadow lebih kuat saat hover */
+}
+
+/* Hottest Section */
+.hottest-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+/* Product Container Styles */
+.product-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.product-card {
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px;
+    width: 200px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+}
+
+.product-card:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow lebih kuat saat hover */
+}
+
+.product-image {
+    width: 100%;
+    height: auto;
+}
+
+.product-name {
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+.product-price {
+    color: #2b2d42;
+}
+
+.product-card .view-button {
+    font-size: 0.8rem; /* Ukuran button lebih kecil */
+    padding: 6px 12px; /* Sedikit lebih kecil dari button lainnya */
+}
+
+.separator {
+    border: 0;
+    height: 4px; /* Lebar garis */
+    background: rgba(0, 0, 0, 0.2); /* Warna garis pemisah */
+    margin: 10px 0; /* Margin atas dan bawah */
+}
+
+
+/* Footer Styles */
+.footer {
+    background-color: #111;
+    padding: 20px;
+    text-align: center;
+}
+
+.footer p {
+    margin: 0;
+}
+
+.contact-info {
+    margin-top: 10px;
+}
+
+.contact-info h4 {
+    margin-bottom: 10px;
+}
+
+.contact-info ul {
+    list-style: none;
+    padding: 0;
+}
+
+.contact-info ul li {
+    margin: 5px 0;
+}
+
+.contact-info ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.contact-info ul li a:hover {
+    text-decoration: underline;
+}
+

@@ -1,0 +1,113 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f4f6f9;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Login Container */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 30px;
+}
+
+/* Login Box */
+.login-wrap {
+    width: 100%;
+    text-align: center;
+}
+
+/* Login Icon */
+.login-icon i {
+    font-size: 50px;
+    color: #364360;
+    margin-bottom: 15px;
+}
+
+/* Login Heading */
+.login-heading {
+    font-size: 28px;
+    color: #364360;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Form Inputs */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    margin-top: 5px;
+}
+
+/* Submit Button */
+.btn-login {
+    width: 100%;
+    padding: 12px;
+    background-color: #364360;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-login:hover {
+    background-color: #5a6b7d;
+}
+
+/* Footer and Links */
+.form-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.forgot-password a {
+    color: #364360;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.forgot-password a:hover {
+    text-decoration: underline;
+}
+
+.signup-link p {
+    font-size: 14px;
+    color: #364360;
+}
+
+.signup-link a {
+    color: #364360;
+    font-weight: 600;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}

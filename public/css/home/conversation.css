@@ -1,0 +1,66 @@
+/* Mengatur gaya umum untuk seluruh halaman percakapan */
+.conversation-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.conversation-title {
+    font-size: 36px;
+    color: #2b2d42;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.conversation-list {
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.conversation-item {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.conversation-item:hover {
+    background-color: #f1f1f1;
+}
+
+.conversation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.conversation-header strong {
+    font-size: 18px;
+    color: #364360;
+}
+
+.conversation-preview {
+    font-size: 14px;
+    color: #6c757d;
+    font-style: italic;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .conversation-container {
+        padding: 15px;
+    }
+
+    .conversation-title {
+        font-size: 28px;
+    }
+
+    .conversation-item {
+        padding: 12px;
+    }
+}
