@@ -17,7 +17,7 @@ class CreateOtpsTable extends Migration
             $table->uuid('id');
             $table->uuid('user_id');  // Menyimpan ID pengguna
             $table->string('otp');  // Menyimpan kode OTP
-            $table->timestamp('expires_at');  // Waktu kadaluarsa OTP
+            $table->timestamp('expires_at')->nullable();  // Waktu kadaluarsa OTP
             $table->timestamps();
 
             // Menambahkan foreign key constraint

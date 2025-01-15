@@ -11,13 +11,13 @@
 <div class="container mt-4">
     <div class="mb-4 text-center">
         <h1 class="display-5">Post List</h1>
-        <p class="text-muted">Lihat apa yang diposting pengguna lain!</p>
+        <p class="text-muted">See what other users are posting!</p>
     </div>
 
     <!-- Menampilkan daftar postingan -->
     @if($posts->isEmpty())
         <div class="alert alert-info text-center">
-            <p>Belum ada postingan dari pengguna.</p>
+            <p>There are no posts from users yet.</p>
         </div>
     @else
         <div class="row justify-content-center">
@@ -63,7 +63,7 @@
                                 <form method="POST" action="{{ route('comments.post', $post->id) }}">
                                     @csrf
                                     <textarea name="content" id="comment-content-{{ $post->id }}" class="form-control" rows="3" required placeholder="Tulis komentar..."></textarea>
-                                    <button type="submit" class="btn btn-success mt-2">Kirim Komentar</button>
+                                    <button type="submit" class="btn btn-success mt-2">Send Comment</button>
                                 </form>
                             </div>
 

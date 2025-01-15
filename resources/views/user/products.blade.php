@@ -2,10 +2,10 @@
 
 @section('content')
 <div class="container mt-4">
-    <h2>Semua Barang Anda</h2>
+    <h2>All your Product</h2>
 
     @if($products->isEmpty())
-        <p>Anda belum mengunggah barang.</p>
+        <p>You haven't uploaded an item yet.</p>
     @else
         <div class="row">
             @foreach($products as $product)
@@ -27,7 +27,7 @@
                             <p><strong>Jumlah:</strong> {{ $product->jumlah_barang }}</p>
 
                             <!-- Action buttons -->
-                            <a href="{{ route('product.show', $product->id) }}" class="btn btn-primary btn-sm">Lihat Detail</a>
+                            <a href="{{ route('product.show', $product->id) }}" class="btn btn-primary btn-sm">See Details</a>
                             <a href="{{ route('products.edit', $product->id) }}" class="btn btn-warning btn-sm">Edit</a>
                         </div>
                     </div>

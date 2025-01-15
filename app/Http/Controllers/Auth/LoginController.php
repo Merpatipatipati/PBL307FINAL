@@ -19,37 +19,43 @@ class LoginController extends Controller
     /**
      * Memproses login.
      */
-    public function login(Request $request)
+public function login(Request $request)
 {
     // Validasi input
     $request->validate([
-        'username' => 'required|string',
+        'login' => 'required|string', // Login bisa berupa email atau username
         'password' => 'required|string',
     ]);
 
-    // Coba login
-    if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
-        // Cek apakah status user adalah 'Banned'
+    // Tentukan login type, apakah email atau username
+    $loginType = filter_var($request->login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+
+    // Upaya login
+    if (Auth::attempt([$loginType => $request->login, 'password' => $request->password])) {
+        // Ambil data user yang berhasil login
         $user = Auth::user();
-        
+
+        // Cek apakah user sudah terverifikasi
+        if ($user->status === 'non-verified') {
+            Auth::logout(); // Logout jika tidak terverifikasi
+            return redirect()->route('login')->with('error', 'Your account is not verified. Please verify your account before logging in.');
+        }
+
+        // Cek apakah status user adalah 'banned'
         if ($user->status === 'banned') {
-            // Logout user yang dibanned
-            Auth::logout();
-            
-            // Set pesan banned di session
+            Auth::logout(); // Logout jika dibanned
             return redirect()->route('login')->with('error', 'Your account has been banned.');
         }
 
-        // Jika login berhasil dan akun tidak dibanned, redirect ke halaman yang dituju
+        // Jika login berhasil dan akun valid, redirect ke halaman yang dituju
         return redirect()->intended('home')->with('success', 'Login berhasil!');
     }
 
     // Jika login gagal, kembali ke formulir login dengan pesan kesalahan
     return back()->withErrors([
-        'username' => 'Username atau password salah.',
-    ])->withInput($request->only('username'));
+        'login' => 'Username, email, atau password salah.',
+    ])->withInput($request->only('login'));
 }
-
 
     /**
      * Logout pengguna.

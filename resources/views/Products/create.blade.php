@@ -26,15 +26,24 @@
                 <input type="text" name="nama_barang" class="form-control" placeholder="Enter the Item Name" required value="{{ old('nama_barang') }}">
             </div>
 
-            <div class="form-group">
-                <label for="tag_barang">Category</label>
-                <select name="tag_barang" class="form-control" required>
-                    <option value="">Select Category</option>
-                    <option value="Electronics and Gadgets" {{ old('tag_barang') == 'Electronics and Gadgets' ? 'selected' : '' }}>Electronics</option>
-                    <!-- Add more options as needed -->
-                </select>
-            </div>
-
+<div class="form-group">
+    <label for="tag_barang">Category</label>
+    <select name="tag_barang" class="form-control" placeholder="choose the category" required>
+        <option value="Electronics and Gadgets" {{ old('tag_barang') == 'Electronics and Gadgets' ? 'selected' : '' }}>Electronics and Gadgets</option>
+        <option value="Fashion" {{ old('tag_barang') == 'Fashion' ? 'selected' : '' }}>Fashion</option>
+        <option value="Health and Beauty" {{ old('tag_barang') == 'Health and Beauty' ? 'selected' : '' }}>Health and Beauty</option>
+        <option value="Food and Beverages" {{ old('tag_barang') == 'Food and Beverages' ? 'selected' : '' }}>Food and Beverages</option>
+        <option value="Home Appliances" {{ old('tag_barang') == 'Home Appliances' ? 'selected' : '' }}>Home Appliances</option>
+        <option value="Furniture" {{ old('tag_barang') == 'Furniture' ? 'selected' : '' }}>Furniture</option>
+        <option value="Sports and Outdoor" {{ old('tag_barang') == 'Sports and Outdoor' ? 'selected' : '' }}>Sports and Outdoor</option>
+        <option value="Baby and Kids" {{ old('tag_barang') == 'Baby and Kids' ? 'selected' : '' }}>Baby and Kids</option>
+        <option value="Automotive" {{ old('tag_barang') == 'Automotive' ? 'selected' : '' }}>Automotive</option>
+        <option value="School Supplies" {{ old('tag_barang') == 'School Supplies' ? 'selected' : '' }}>School Supplies</option>
+        <option value="Agriculture and Gardening" {{ old('tag_barang') == 'Agriculture and Gardening' ? 'selected' : '' }}>Agriculture and Gardening</option>
+        <option value="Construction Supplies" {{ old('tag_barang') == 'Construction Supplies' ? 'selected' : '' }}>Construction Supplies</option>
+        <option value="More" {{ old('tag_barang') == 'More' ? 'selected' : '' }}>More</option>
+    </select>
+</div>
             <div class="form-group">
                 <label for="harga_barang">Price (Rp)</label>
                 <input type="number" name="harga_barang" class="form-control" placeholder="Enter the Item Price" required value="{{ old('harga_barang') }}">
@@ -52,42 +61,44 @@
                 <textarea name="deskripsi_barang" class="form-control" rows="4" placeholder="Enter an Item Description">{{ old('deskripsi_barang') }}</textarea>
             </div>
 
-            <div class="form-group">
-                <label for="gambar_barang">Upload</label>
-                <input type="file" name="gambar_barang" class="form-control" accept="image/*" id="imageInput" onchange="previewImage(event)">
-                <div class="mt-3 text-center">
-                    <img id="imagePreview" src="" alt="Preview Gambar" style="max-width: 100%; max-height: 300px; display: none;">
-                </div>
-            </div>
+<div class="form-group">
+    <label for="gambar_barang">Upload (max 5MB)</label>
+    <input type="file" name="gambar_barang" class="form-control" accept=".jpeg,.jpg,.png" id="imageInput" onchange="validateAndPreviewImage(event)">
+    <div class="mt-3 text-center">
+        <img id="imagePreview" src="" alt="Preview Gambar" style="max-width: 100%; max-height: 300px; display: none;">
+    </div>
+    <div id="error-message" style="color: red; display: none;" class="mt-2">File size exceeds 5MB. Please choose a smaller image.</div>
+</div>
 
             <button type="submit" class="btn btn-primary btn-block">Upload</button>
         </form>
     </div>
 
-    <script>
-        function previewImage(event) {
-            const file = event.target.files[0];
-            const reader = new FileReader();
+<script>
+function validateAndPreviewImage(event) {
+    const fileInput = event.target;
+    const file = fileInput.files[0];
+    const errorMessage = document.getElementById("error-message");
+    const imagePreview = document.getElementById("imagePreview");
 
-            reader.onload = function(e) {
-                const imagePreview = document.getElementById('imagePreview');
-                imagePreview.src = e.target.result;
-                imagePreview.style.display = 'block';
-            };
+    // Reset previous error message and preview
+    errorMessage.style.display = "none";
+    imagePreview.style.display = "none";
 
-            if (file) {
-                reader.readAsDataURL(file);
-            }
-        }
+    // Check file size
+    if (file && file.size > 5 * 1024 * 1024) { // 5 MB in bytes
+        errorMessage.style.display = "block"; // Show error message
+        fileInput.value = ''; // Clear the file input
+        return;
+    }
 
-        // SweetAlert for success message
-        @if(session('productUploaded'))
-            Swal.fire({
-                title: 'Barang Berhasil Diupload!',
-                text: 'Barang baru Anda telah berhasil diunggah.',
-                icon: 'success',
-                confirmButtonText: 'OK'
-            });
-        @endif
-    </script>
+    // If file is valid, show the image preview
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        imagePreview.src = e.target.result;
+        imagePreview.style.display = "block";
+    }
+    reader.readAsDataURL(file);
+}
+</script>
 @endsection

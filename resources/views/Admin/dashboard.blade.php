@@ -47,9 +47,6 @@
     <nav class="sidebar close">
       <header>
         <div class="image-text">
-          <span class="image">
-            <img src="{{ asset('img/open.png') }}" alt="Logo">
-          </span>
           <div class="text logo-text">
             <span class="name">OpenShop</span>
             <span class="profession">Admin Dashboard</span>

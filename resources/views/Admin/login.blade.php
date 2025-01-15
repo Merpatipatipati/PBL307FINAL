@@ -26,9 +26,8 @@
     </div>
     <button type="submit">Login</button>
 </form>
-      
-      <!-- Tautan untuk reset password -->
-      <p>Forgot your password? <a href="#">Reset it here</a></p>
+
+    </div>
     </div>
   </div>
 </body>

@@ -10,15 +10,20 @@ class Message extends Model
 {
     use HasFactory;
 
-    protected $keyType = 'string'; // Pastikan keyType diatur ke string
-    public $incrementing = false; // Non-incrementing untuk UUID
+    // Mengatur type ID menjadi string karena kita menggunakan UUID
+    protected $keyType = 'string';
 
+    // Non-incrementing untuk UUID
+    public $incrementing = false;
+
+    // Menambahkan UUID ketika model baru dibuat
     protected static function boot()
     {
         parent::boot();
 
         static::creating(function ($model) {
-            $model->id = (string) Str::uuid(); // Generate UUID saat membuat model baru
+            // Mengenerate UUID secara otomatis untuk ID
+            $model->id = (string) Str::uuid();
         });
     }
 
@@ -31,14 +36,21 @@ class Message extends Model
         'sent_at',
     ];
 
+    // Relasi dengan pengirim pesan (user)
     public function sender()
-{
-    return $this->belongsTo(User::class, 'sender_id');
+    {
+        return $this->belongsTo(User::class, 'sender_id');
+    }
+
+    // Relasi dengan percakapan (conversation)
+    public function conversation()
+    {
+        return $this->belongsTo(Conversation::class);
+    }
+
+    // Casting atribut 'sent_at' menjadi tipe datetime
+    protected $casts = [
+        'sent_at' => 'datetime',
+    ];
 }
 
-// In App\Models\Message.php
-protected $casts = [
-    'sent_at' => 'datetime',
-];
-
-}

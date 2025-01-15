@@ -8,7 +8,7 @@
         <div class="col-md-8">
             <div class="card shadow-sm">
                 <div class="card-header bg-primary text-white">
-                    <h3 class="mb-0">Buat Post Baru</h3>
+                    <h3 class="mb-0">Create new post</h3>
                 </div>
                 <div class="card-body">
                     <!-- Menampilkan pesan error validasi -->
@@ -26,18 +26,18 @@
                     <form action="{{ route('user.createPost') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                            <label for="content" class="form-label">Konten</label>
+                            <label for="content" class="form-label">Content</label>
                             <textarea 
                                 class="form-control" 
                                 id="content" 
                                 name="content" 
                                 rows="4" 
-                                placeholder="Tulis sesuatu yang menarik..." 
+                                placeholder="Write something interesting..." 
                                 required>{{ old('content') }}</textarea>
                         </div>
 
                         <div class="form-group mt-3">
-                            <label for="image" class="form-label">Upload Gambar (Opsional)</label>
+                            <label for="image" class="form-label">Upload image (Opsional)</label>
                             <input 
                                 type="file" 
                                 class="form-control-file" 
@@ -53,7 +53,7 @@
                         </div>
 
                         <div class="d-grid gap-2 mt-4">
-                            <button type="submit" class="btn btn-primary btn-lg">Unggah Post</button>
+                            <button type="submit" class="btn btn-primary btn-lg">Upload Post</button>
                         </div>
                     </form>
                 </div>

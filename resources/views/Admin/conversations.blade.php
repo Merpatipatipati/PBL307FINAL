@@ -6,8 +6,8 @@
   <title>Dashboard Sidebar</title>
   <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
-  <link rel="stylesheet" href="/css/admin/conversation.css">
-  <link rel="stylesheet" href="/css/admin/sidebar-design.css">
+    <link rel="stylesheet" href="{{ asset('/css/Admin/conversation.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/Admin/sidebar-design.css') }}">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
@@ -20,12 +20,9 @@
     <nav class="sidebar close">
       <header>
         <div class="image-text">
-          <span class="image">
-            <img src="img/open.png" alt="Logo">
-          </span>
           <div class="text logo-text">
-            <span class="name">Stella Army</span>
-            <span class="profession">Web Developer</span>
+            <span class="name">Post Management</span>
+            <span class="profession">Openshop</span>
           </div>
         </div>
         <i class='bx bx-chevron-right toggle'></i>

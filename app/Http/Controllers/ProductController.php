@@ -15,29 +15,32 @@ class ProductController extends Controller
     // Menampilkan formulir untuk meng-upload barang
     public function create()
     {
-        return view('products.create');
+        return view('Products.create');
     }
 
     // Menampilkan produk berdasarkan kategori
-    public function showCategory($category)
+public function showCategory($category)
 {
-    // Ambil produk berdasarkan kategori dan filter user yang tidak banned
+    $category = str_replace('-', ' ', $category);
+    // Ambil produk berdasarkan kategori dan filter user yang tidak banned serta produk yang tidak di-takedown
     if ($category == 'All') {
-        // Ambil semua produk dari user yang tidak banned
+        // Ambil semua produk dari user yang tidak banned dan status produk bukan takedown
         $products = Product::whereHas('user', function ($query) {
             $query->where('status', '!=', 'banned'); // Filter user yang tidak banned
-        })->get();
+        })->where('takedown', '!=', '1') // Filter produk yang tidak di-takedown
+          ->get();
     } else {
-        // Ambil produk berdasarkan kategori (tag_barang) dari user yang tidak banned
+        // Ambil produk berdasarkan kategori (tag_barang) dari user yang tidak banned dan produk yang tidak di-takedown
         $products = Product::whereHas('user', function ($query) {
             $query->where('status', '!=', 'banned'); // Filter user yang tidak banned
-        })->where('tag_barang', $category)->get();
+        })->where('tag_barang', $category)
+          ->where('takedown', '!=', '1') // Filter produk yang tidak di-takedown
+          ->get();
     }
 
     // Kembalikan ke view dengan data produk dan kategori
-    return view('products.category', compact('products', 'category'));
+    return view('Products.category', compact('products', 'category'));
 }
-
 
 
     // Menampilkan semua produk
@@ -47,7 +50,7 @@ class ProductController extends Controller
     $products = Product::active()->with('user')->get();
     
     // Mengirimkan data produk ke view
-    return view('products.index', compact('products'));
+    return view('inside.home', compact('products'));
 }
     // Menampilkan gambar produk
     public function getImage($id)
@@ -74,7 +77,7 @@ class ProductController extends Controller
     $canReport = auth()->check() && auth()->user()->can('report', $product);
     $comments = $product->comments()->get();
 
-    return view('products.show', compact('product', 'canUpdate', 'canDelete', 'canReport', 'comments'));
+    return view('Products.show', compact('product', 'canUpdate', 'canDelete', 'canReport', 'comments'));
 }
 
     // Menyimpan produk yang di-upload
@@ -82,12 +85,12 @@ class ProductController extends Controller
 {
     // Validasi data
     $request->validate([
-        'nama_barang' => 'required|string|max:255',
+        'nama_barang' => 'required|string|max:50',
         'tag_barang' => 'required|string|max:255',
-        'harga_barang' => 'required|numeric',
-        'jumlah_barang' => 'required|integer|min:1|',
-        'deskripsi_barang' => 'nullable|string',
-        'gambar_barang' => 'required|image|mimes:jpeg,png,jpg|max:10000',
+        'harga_barang' => 'required|numeric|max:999999999999',
+        'jumlah_barang' => 'required|integer|min:1|max:1000',
+        'deskripsi_barang' => 'nullable|string|max:500',
+        'gambar_barang' => 'required|image|mimes:jpeg,png,jpg|max:5120',
     ]);
 
     // Mengambil data dari form
@@ -123,47 +126,43 @@ class ProductController extends Controller
 
 public function search(Request $request)
 {
-    $query = $request->input('query');
+    $searchQuery = $request->input('query');
 
-    // Pencarian Produk berdasarkan kolom nama_barang, deskripsi, dan tag_barang
-    // Hanya produk yang dimiliki oleh user yang tidak banned dan produk yang tidak takedown
-    $products = Product::where('nama_barang', 'like', '%' . $query . '%')
-                        ->orWhere('deskripsi_barang', 'like', '%' . $query . '%')
-                        ->orWhere('tag_barang', 'like', '%' . $query . '%')
+    // Pencarian Produk
+    $products = Product::where('nama_barang', 'like', '%' . $searchQuery . '%')
+                        ->orWhere('deskripsi_barang', 'like', '%' . $searchQuery . '%')
+                        ->orWhere('tag_barang', 'like', '%' . $searchQuery . '%')
                         ->whereHas('user', function ($query) {
-                            $query->where('status', '!=', 'banned'); // Hanya produk milik user yang aktif
+                            $query->where('status', '!=', 'banned');
                         })
-                        ->where('takedown', '!=', '1') // Pastikan produk tidak dalam status takedown
+                        ->where('takedown', '!=', '1')
                         ->get();
 
-    // Pencarian User berdasarkan kolom nama, email, atau username
-    // Hanya user yang tidak banned
-    $users = User::where('fullname', 'like', '%' . $query . '%')
-                 ->orWhere('email', 'like', '%' . $query . '%')
-                 ->orWhere('username', 'like', '%' . $query . '%')
-                 ->active() // Hanya menampilkan user yang tidak dibanned
+    // Pencarian User
+    $users = User::where('fullname', 'like', '%' . $searchQuery . '%')
+                 ->orWhere('email', 'like', '%' . $searchQuery . '%')
+                 ->orWhere('username', 'like', '%' . $searchQuery . '%')
+                 ->where('status', 'verified')
                  ->get();
 
-    // Pencarian Post berdasarkan kolom judul, isi, atau tag
-    // Hanya post yang dibuat oleh user yang tidak banned dan post yang tidak takedown
-    $posts = Post::where('content', 'like', '%' . $query . '%')
+    // Pencarian Post
+    $posts = Post::where('content', 'like', '%' . $searchQuery . '%')
                  ->whereHas('user', function ($query) {
-                     $query->where('status', '!=', 'banned'); // Hanya post dari user yang tidak dibanned
+                     $query->where('status', '!=', 'banned');
                  })
-                 ->where('status', '!=', 'takedown') // Pastikan post tidak dalam status takedown
+                 ->where('status', '!=', 'takedown')
                  ->get();
 
     // Kembalikan ke tampilan dengan semua data yang ditemukan
-    return view('products.search', compact('products', 'users', 'posts'));
+    return view('Products.search', compact('products', 'users', 'posts'));
 }
-
 public function edit($id)
 {
     // Retrieve the product by ID
     $product = Product::findOrFail($id);
 
     // Return the edit form with the product data
-    return view('products.update', compact('product'));
+    return view('Products.update', compact('product'));
 }
 
 public function update(Request $request, $id)
@@ -173,12 +172,12 @@ public function update(Request $request, $id)
 
     // Validate input data
     $request->validate([
-        'nama_barang' => 'required|string|max:255',
-        'deskripsi_barang' => 'nullable|string|max:1000',
-        'harga_barang' => 'required|numeric',
-        'jumlah_barang' => 'required|integer',
+        'nama_barang' => 'required|string|max:50',
+        'deskripsi_barang' => 'nullable|string|max:500',
+        'harga_barang' => 'required|numeric|max:999999999999',
+        'jumlah_barang' => 'required|interger|min:1|max:1000',
         'tag_barang' => 'nullable|string|max:255',
-        'gambar_barang' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'gambar_barang' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
     ]);
 
     // Update product details
@@ -203,7 +202,7 @@ public function update(Request $request, $id)
     $product->save();
 
     // Redirect to the updated product's details page with a success message
-    return redirect()->route('product.show', $product->id)->with('success', 'Product updated successfully!');
+    return redirect()->route('Product.show', $product->id)->with('success', 'Product updated successfully!');
 }
 public function destroy($id)
 {

@@ -25,7 +25,7 @@
                     <p><strong>Price:</strong> Rp {{ number_format($product->harga_barang, 2, ',', '.') }}</p>
                     <p><strong>Quantity:</strong> {{ $product->jumlah_barang }}</p>
                     <p><strong>Category:</strong> {{ $product->tag_barang }}</p>
-                    <p><small class="text-muted">uploaded by: {{ $product->user->fullname }}</small></p>
+                    <p><small class="text-muted">uploaded by: {{ $product->user->username }}</small></p>
                 </div>
 
                 <!-- Tombol untuk pemilik produk (Edit, Hapus) -->
@@ -60,13 +60,13 @@
         <form id="comment-form" method="POST" action="{{ route('product.storeComment', $product->id) }}">
             @csrf
             <textarea name="content" id="comment-content" class="form-control" rows="3" required></textarea>
-            <button type="submit" class="btn btn-success mt-2">Kirim Komentar</button>
+            <button type="submit" class="btn btn-success mt-2">Send Comments</button>
         </form>
     </div>
 
     <!-- Bagian Menampilkan Komentar -->
     <div class="comments-section mt-5">
-        <h3>Komentar:</h3>
+        <h3>Comments:</h3>
         <div id="comments-container">
             @foreach ($comments as $comment)
                 <div class="comment-item mb-3 border-bottom pb-2">

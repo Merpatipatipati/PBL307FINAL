@@ -17,10 +17,6 @@
                 <!-- Back Button -->
                 <li><a href="{{ route('dashboard') }}">Back</a></li>
                 
-                <!-- Logo -->
-                <li style="flex-grow: 1; text-align: center;">
-                    <img src="../img/open.png" alt="Logo" class="logo-brand" style="max-width: 150px; height: auto;">
-                </li>
                 
                 <!-- Login Button -->
                 <div class="right-nav" style="margin-left: auto;">

@@ -31,20 +31,20 @@
                 <h5 class="mb-3">Category</h5>
                 <div class="d-grid gap-2">
                     @foreach ([ 
-                        ['All', 'fas fa-th-large'],
-                        ['Electronics and Gadgets', 'fas fa-mobile-alt'],
-                        ['Fashion', 'fas fa-tshirt'],
-                        ['Health and Beauty', 'fas fa-heart'],
-                        ['Food and Beverages', 'fas fa-utensils'],
-                        ['Home Appliances', 'fas fa-blender'],
-                        ['Furniture', 'fas fa-couch'],
-                        ['Sports and Outdoor', 'fas fa-football-ball'],
-                        ['Baby and Kids', 'fas fa-baby'],
-                        ['Automotive', 'fas fa-car'],
-                        ['School Supplies', 'fas fa-pen'],
-                        ['Agriculture and Gardening', 'fas fa-seedling'],
-                        ['Construction Supplies', 'fas fa-tools'],
-                        ['More', 'fas fa-ellipsis-h']
+                        ['All', 'fas fa-th-large'], 
+                        ['Electronics and Gadgets', 'fas fa-mobile-alt'], 
+                        ['Fashion', 'fas fa-tshirt'], 
+                        ['Health and Beauty', 'fas fa-heart'], 
+                        ['Food and Beverages', 'fas fa-utensils'], 
+                        ['Home Appliances', 'fas fa-blender'], 
+                        ['Furniture', 'fas fa-couch'], 
+                        ['Sports and Outdoor', 'fas fa-football-ball'], 
+                        ['Baby and Kids', 'fas fa-baby'], 
+                        ['Automotive', 'fas fa-car'], 
+                        ['School Supplies', 'fas fa-pen'], 
+                        ['Agriculture and Gardening', 'fas fa-seedling'], 
+                        ['Construction Supplies', 'fas fa-tools'], 
+                        ['More', 'fas fa-ellipsis-h'] 
                     ] as $category)
                     <div class="card border-light shadow-sm" style="height: 50px; width: 100%; font-size: 14px;">
                         <a href="{{ route('category', $category[0]) }}" class="stretched-link text-decoration-none text-dark">
@@ -60,10 +60,31 @@
 
             <!-- Daftar Hasil Pencarian -->
             <div class="col-md-9">
-                <div class="row">
-                    <!-- Menampilkan Produk -->
-                    @if($products->isNotEmpty())
-                        <h4>Products</h4>
+                <!-- Menampilkan Pengguna -->
+                @if($users->isNotEmpty())
+                    <h4 class="mt-4">Users</h4>
+                    <div class="row">
+                        @foreach ($users as $user)
+                            <div class="col-md-4 mb-4">
+                                <div class="card user-card h-100 shadow-sm">
+                                    <a href="{{ route('user.show', $user->id) }}" class="stretched-link"></a>
+                                    <div class="card-body text-center">
+                                        <!-- Foto Profil -->
+                                        <img src="{{ Storage::url($user->photo) }}" alt="{{ $user->photo }}" class="img-fluid rounded-circle" style="height: 100px; width: 100px; object-fit: cover;">
+                                        <h5 class="card-title mt-3">{{ $user->username }}</h5>
+                                        <p class="card-text">{{ $user->fullname }}</p>
+                                        <p class="card-text">{{ $user->email }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                @endif
+
+                <!-- Menampilkan Produk -->
+                @if($products->isNotEmpty())
+                    <h4 class="mt-4">Products</h4>
+                    <div class="row">
                         @foreach ($products as $product)
                             <div class="col-md-4 mb-4">
                                 <div class="card product-card h-100 shadow-sm">
@@ -83,11 +104,13 @@
                                 </div>
                             </div>
                         @endforeach
-                    @endif
+                    </div>
+                @endif
 
-                    <!-- Menampilkan Postingan -->
-                    @if($posts->isNotEmpty())
-                        <h4>Posts</h4>
+                <!-- Menampilkan Postingan -->
+                @if($posts->isNotEmpty())
+                    <h4 class="mt-4">Posts</h4>
+                    <div class="row">
                         @foreach ($posts as $post)
                             <div class="col-md-4 mb-4">
                                 <div class="card post-card h-100 shadow-sm">
@@ -106,36 +129,17 @@
                                 </div>
                             </div>
                         @endforeach
-                    @endif
+                    </div>
+                @endif
 
-                    <!-- Menampilkan Pengguna -->
-                    @if($users->isNotEmpty())
-                        <h4>Users</h4>
-                        @foreach ($users as $user)
-                            <div class="col-md-4 mb-4">
-                                <div class="card user-card h-100 shadow-sm">
-                                    <a href="{{ route('user.show', $user->id) }}" class="stretched-link"></a>
-                                    <div class="card-body text-center">
-                                        <!-- Foto Profil -->
-                                        <img src="{{ Storage::url($user->photo) }}" alt="{{ $user->photo }}" class="img-fluid rounded-circle" style="height: 100px; width: 100px; object-fit: cover;">
-                                        <h5 class="card-title mt-3">{{ $user->username }}</h5>
-                                        <p class="card-text">{{ $user->fullname }}</p>
-                                        <p class="card-text">{{ $user->email }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    @endif
-
-                    <!-- Pesan jika tidak ada hasil pencarian -->
-                    @if($products->isEmpty() && $posts->isEmpty() && $users->isEmpty())
-                        <div class="col-12">
-                            <div class="alert alert-warning" role="alert">
-                                No results found for your search.
-                            </div>
+                <!-- Pesan jika tidak ada hasil pencarian -->
+                @if($products->isEmpty() && $posts->isEmpty() && $users->isEmpty())
+                    <div class="col-12">
+                        <div class="alert alert-warning" role="alert">
+                            No results found for your search.
                         </div>
-                    @endif
-                </div>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

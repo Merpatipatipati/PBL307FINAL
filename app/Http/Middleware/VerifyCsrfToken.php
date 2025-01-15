@@ -12,6 +12,8 @@ class VerifyCsrfToken extends Middleware
      * @var array<int, string>
      */
     protected $except = [
-        //
+        'https://10.10.10.2/admin/*',
+        'http://10.10.10.3/admin/*',
+        'http://10.10.10.4/admin/*',
     ];
 }

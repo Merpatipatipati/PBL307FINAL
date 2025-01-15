@@ -1,0 +1,82 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f4f6f9;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Reset Password Container */
+.reset-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 30px;
+}
+
+/* Reset Password Box */
+.reset-wrap {
+    width: 100%;
+    text-align: center;
+}
+
+/* Reset Password Heading */
+.reset-heading {
+    font-size: 28px;
+    color: #364360;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Form Inputs */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    margin-top: 5px;
+}
+
+/* Submit Button */
+.btn-reset {
+    width: 100%;
+    padding: 12px;
+    background-color: #364360;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-reset:hover {
+    background-color: #5a6b7d;
+}
+
+/* Error Message */
+.error-message {
+    color: red;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+

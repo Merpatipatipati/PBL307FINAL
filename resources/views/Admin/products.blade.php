@@ -38,12 +38,9 @@
     <nav class="sidebar close">
       <header>
         <div class="image-text">
-          <span class="image">
-            <img src="img/open.png" alt="Logo">
-          </span>
           <div class="text logo-text">
-            <span class="name">Stella Army</span>
-            <span class="profession">Web Developer</span>
+            <span class="name">Product Management</span>
+            <span class="profession">Openshop</span>
           </div>
         </div>
         <i class='bx bx-chevron-right toggle'></i>

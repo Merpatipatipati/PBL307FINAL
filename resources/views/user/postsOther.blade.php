@@ -2,11 +2,11 @@
 
 @section('content')
 <div class="container mt-4">
-    <h2 class="text-dark font-weight-bold text-center mb-4">{{ $user->id === auth()->id() ? 'Postingan Anda' : 'Postingan oleh ' . $user->username }}</h2>
+    <h2 class="text-dark font-weight-bold text-center mb-4">{{ $user->id === auth()->id() ? 'Your Posts' : 'Post by ' . $user->username }}</h2>
 
     @if($posts->isEmpty())
         <div class="alert alert-warning text-center">
-            {{ $user->id === auth()->id() ? 'Anda belum membuat postingan.' : 'Pengguna ini belum membuat postingan.' }}
+            {{ $user->id === auth()->id() ? 'Anda belum membuat postingan.' : 'You dont have a post yet.' : 'This user has not made any posts.' }}
         </div>
     @else
         <div class="row">
@@ -35,7 +35,7 @@
                                     <form action="{{ route('user.deletePost', $post->id) }}" method="POST" class="d-inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                     </form>
                                 @endif
                             </div>

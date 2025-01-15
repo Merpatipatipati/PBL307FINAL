@@ -6,9 +6,11 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "beyondcode/laravel-websockets": "^1.14",
         "endroid/qr-code": "^6.0",
         "guzzlehttp/guzzle": "^7.2",
-        "laravel/framework": "^10.10",
+        "guzzlehttp/psr7": "^1.5",
+        "laravel/framework": "^10.48",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
         "pragmarx/google2fa": "^8.0",
@@ -69,6 +71,6 @@
             "php-http/discovery": true
         }
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": true
 }

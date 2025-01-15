@@ -34,10 +34,6 @@
                 </div>
 
                 <div class="card-footer bg-white d-flex justify-content-between align-items-center">
-                    <div>
-                        <i class="bi bi-chat-fill text-secondary"></i> 
-                        <span class="text-muted">{{ $post->comments_count }} Komentar</span>
-                    </div>
 
                     <!-- Action Buttons for Post Owner or Other Users -->
                     <div class="d-flex">
@@ -56,7 +52,7 @@
                             <form action="{{ route('reports.post.show', ['id' => $post->id]) }}" style="display:inline;">
                                 @csrf
                                 <button type="submit" class="btn btn-outline-danger">
-                                    Laporkan Post
+                                    Report Post
                                 </button>
                             </form>
                         @endif
@@ -65,14 +61,14 @@
 
                 <!-- Section for Comments -->
                 <div class="mt-4">
-                    <h5>Komentar:</h5>
+                    <h5>Comments:</h5>
 
                     <!-- Form to Add Comment -->
                     <div class="comment-form">
                         <form method="POST" action="{{ route('comments.post', $post->id) }}">
                             @csrf
                             <textarea name="content" id="comment-content" class="form-control" rows="3" required placeholder="Tulis komentar..."></textarea>
-                            <button type="submit" class="btn btn-success mt-2">Kirim Komentar</button>
+                            <button type="submit" class="btn btn-success mt-2">send comments</button>
                         </form>
                     </div>
 
@@ -80,7 +76,8 @@
                     <div class="comments-section mt-3">
                         @foreach ($post->comments as $comment)
                             <div class="comment-item mb-3 border-bottom pb-2">
-                                <p><strong>{{ $comment->user->username }}</strong></p>
+
+<p><strong>{{ $comment->user ? $comment->user->username : 'Anonymous' }}</strong></p>
                                 <p>{{ $comment->content }}</p>
                                 <small class="text-muted">{{ $comment->created_at->format('d-m-Y H:i') }}</small>
                             </div>

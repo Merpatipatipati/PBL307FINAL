@@ -15,13 +15,16 @@ class HomeController extends Controller
     }
 
     // Fungsi untuk menampilkan halaman home
-    public function index()
-    {
-   // Mengambil semua produk yang belum di-takedown
-   $products = Product::whereHas('user', function ($query) {
-    $query->where('status', '!=', 'banned');
-})->get();
-   // Mengirim data produk ke view 'home'
-   return view('inside.home', compact('products'));
-    }
+public function index()
+{
+    // Mengambil semua produk yang belum di-takedown, belum dibanned, dan tidak memiliki status 1
+    $products = Product::whereHas('user', function ($query) {
+        $query->where('status', '!=', 'banned');
+    })
+    ->where('takedown', '!=', 1) // Pastikan produk tidak memiliki status 1
+    ->get();
+
+    // Mengirim data produk ke view 'home'
+    return view('inside.home', compact('products'));
+}
 }

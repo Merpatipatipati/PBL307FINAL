@@ -13,9 +13,6 @@
         <div class="top-nav" style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px;">
             <ul style="display: flex; align-items: center; list-style-type: none; margin: 0; padding: 0; width: 100%;">
             <li><a href="{{ route('dashboard') }}">Back</a></li>
-                <li style="flex-grow: 1; text-align: center;">
-                    <img src="../img/open.png" alt="Logo" class="logo-brand" style="max-width: 150px; height: auto;">
-                </li>
                 <div class="right-nav" style="margin-left: auto;">
                     <li><a href="{{ route('login') }}">LOGIN</a></li>
                 </div>

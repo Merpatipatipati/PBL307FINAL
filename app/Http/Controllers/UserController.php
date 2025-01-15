@@ -27,10 +27,14 @@ class UserController extends Controller
 
         return view('user.dashboard', compact('user', 'posts', 'products'));
     }
-    public function showAllProducts()
+
+public function showAllProducts()
 {
     $user = Auth::user();
-    $products = Product::where('user_id', $user->id)->get();
+    // Assuming you have a 'status' column where 'takedown' represents inactive products
+    $products = Product::where('user_id', $user->id)
+                        ->where('takedown', '!=', '1') // Exclude takedown products
+                        ->get();
 
     return view('user.products', compact('products'));
 }
@@ -66,7 +70,7 @@ public function managePosts()
     public function updatePhoto(Request $request)
 {
     $request->validate([
-        'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120',
     ]);
 
     if ($request->hasFile('photo')) {
@@ -98,7 +102,7 @@ public function managePosts()
         // Validasi input
         $request->validate([
             'content' => 'required|string|max:500',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10000',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
         ]);
 
         // Membuat post baru
@@ -147,7 +151,7 @@ public function managePosts()
     
         $post->delete();
     
-        return redirect()->route('user.dashboard')->with('success', 'Post berhasil dihapus.');
+        return redirect()->route('user.managePosts')->with('success', 'Post berhasil dihapus.');
     }
 
     /**
@@ -160,8 +164,8 @@ public function managePosts()
 
     // Validasi input
     $request->validate([
-        'content' => 'required|string|max:1000',
-        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'content' => 'required|string|max:500',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
     ]);
 
     // Update konten
@@ -184,7 +188,7 @@ public function managePosts()
     // Simpan perubahan (this will update the existing record, not create a new one)
     $post->save();
 
-    return redirect()->route('user.allPost', $post->user_id)->with('success', 'Postingan berhasil diperbarui!');
+    return redirect()->route('user.managePosts', $post->user_id)->with('success', 'Postingan berhasil diperbarui!');
 }
     /**
      * Menghapus postingan pengguna.
@@ -198,59 +202,76 @@ public function managePosts()
     $post->delete();
 
     // Redirect dengan pesan sukses
-    return redirect()->route('user.dashboard')->with('success', 'Post berhasil dihapus.');
+    return redirect()->route('user.managePosts')->with('success', 'Post berhasil dihapus.');
 }
 
 public function show($id)
 {
-        // Retrieve the user by ID
-        $user = User::findOrFail($id);
+    // Retrieve the user by ID
+    $user = User::findOrFail($id);
 
-        // Retrieve the user's products
-        $products = Product::where('user_id', $id)->get();
+    // Retrieve the user's products that are not takedown
+    $products = Product::where('user_id', $id)
+                        ->where('takedown', '!=', '1') // Filter produk yang statusnya bukan takedown
+                        ->get();
 
-        // Retrieve the user's posts
-        $posts = Post::where('user_id', $id)->get();
+    // Retrieve the user's posts that are not takedown
+    $posts = Post::where('user_id', $id)
+                    ->where('status', '!=', 'takedown') // Filter post yang statusnya bukan takedown
+                    ->get();
 
-        // Return the view with data
-        return view('user.show', [
-            'user' => $user,
-            'products' => $products,
-            'posts' => $posts,
-        ]);
-    }
-
+    // Return the view with data
+    return view('user.show', [
+        'user' => $user,
+        'products' => $products,
+        'posts' => $posts,
+    ]);
+}
 
 public function showPost(Post $post)
-    {
-        // Menampilkan post di view
-        return view('user.showPost', compact('post'));
+{
+    // Pastikan post yang ditampilkan tidak dalam status banned
+    if ($post->status === 'takedown') {
+        // Redirect atau tampilkan pesan error jika post dibanned
+        return redirect()->route('home')->with('error', 'This post has been banned.');
     }
 
-    public function allPost()
-    {
-        // Retrieve the authenticated user
-        $user = auth()->user();
+    // Menampilkan post di view
+    return view('user.showPost', compact('post'));
+}
+public function allPost()
+{
+    // Retrieve the authenticated user
+    $user = auth()->user();
 
-        // Retrieve all posts of the authenticated user
-        $posts = Post::where('user_id', $user->id)->get();
+    // Retrieve all posts of the authenticated user, excluding takedown posts
+    $posts = Post::where('user_id', $user->id)
+                 ->where('status', '!=', 'takedown') // Filter posts that are not takedown
+                 ->get();
 
-        // Return the view with data
-        return view('user.allPost', [
-            'user' => $user,
-            'posts' => $posts,
-        ]);
-    }
-    public function showProducts($id)
+    // Return the view with data
+    return view('user.allPost', [
+        'user' => $user,
+        'posts' => $posts,
+    ]);
+}
+
+
+public function showProducts($id)
 {
     $user = User::findOrFail($id); // Temukan user berdasarkan ID
-    $products = Product::where('user_id', $id)->get(); // Ambil produk yang dimiliki user
+    $products = Product::where('user_id', $id)
+                       ->where('takedown', '!=', '1') // Filter produk yang tidak di-takedown
+                       ->get(); // Ambil produk yang dimiliki user
     return view('user.productsOther', compact('user', 'products')); // Kirim data ke view
 }
+
 public function showPosts($id)
 {
     $user = User::findOrFail($id); // Temukan user berdasarkan ID
-    $posts = Post::where('user_id', $id)->get(); // Ambil post yang dimiliki user
+    $posts = Post::where('user_id', $id)
+                 ->where('status', '!=', 'takedown') // Filter posts yang tidak di-takedown
+                 ->get(); // Ambil post yang dimiliki user
     return view('user.postsOther', compact('user', 'posts')); // Kirim data ke view
 }
 }

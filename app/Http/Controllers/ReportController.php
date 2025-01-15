@@ -28,7 +28,7 @@ class ReportController extends Controller
     }
 
     // Kirim data produk ke view
-    return view('products.report', compact('product'));
+    return view('Products.report', compact('product'));
 }
 
 
@@ -47,7 +47,7 @@ public function submitReport(Request $request)
         'reason' => $validated['reason'],
     ]);
 
-    return redirect()->route('reports.product.form', $validated['product_id'])
+    return redirect()->route('home', $validated['product_id'])
         ->with('success', 'Your report has been submitted successfully.');
 }
 
@@ -71,7 +71,9 @@ public function submitReport(Request $request)
     public function reportPost(Request $request, $id)
 {
     $post = Post::findOrFail($id);
-
+    $validated = $request->validate([
+        'reason' => 'required|max:255',  // Batas maksimal 255 karakter
+    ]);
     // Simpan alasan laporan ke database atau proses sesuai kebutuhan
     $report = new PostReport();
     $report->post_id = $post->id;

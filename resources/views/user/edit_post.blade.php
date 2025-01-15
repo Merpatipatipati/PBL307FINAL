@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container mt-4">
-    <h2>Edit Postingan</h2>
+    <h2>Edit Post</h2>
 
     <form action="{{ route('user.updatePost', $post->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -14,7 +14,7 @@
         </div>
 
         <div class="mb-3">
-            <label for="image" class="form-label">Gambar Postingan</label>
+            <label for="image" class="form-label">Post image</label>
             @if($post->image_url)
                 <div class="mb-2">
                     <img src="{{ asset('storage/' . $post->image_url) }}" alt="Current Image" class="img-fluid" width="100">
@@ -24,10 +24,10 @@
             <div id="image-preview-container" class="mt-2"></div>
         </div>
 
-        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+        <button type="submit" class="btn btn-primary">Save update</button>
     </form>
 
-    <a href="{{ route('user.allPost', ['id' => auth()->id()]) }}" class="btn btn-secondary mt-3">Kembali</a>
+    <a href="{{ route('user.allPost', ['id' => auth()->id()]) }}" class="btn btn-secondary mt-3">back</a>
 
 </div>
 

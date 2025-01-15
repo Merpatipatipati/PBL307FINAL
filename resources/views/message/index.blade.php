@@ -4,20 +4,20 @@
 <link href="{{ asset('css/home/conversation.css') }}" rel="stylesheet">
 @section('content')
 <div class="container conversation-container">
-    <h1 class="conversation-title">Daftar Percakapan</h1>
+    <h1 class="conversation-title">Conversation List</h1>
     
     <div class="list-group mt-4 conversation-list">
         @foreach($conversations as $conversation)
             <a href="{{ route('message.show', $conversation->id) }}" class="list-group-item list-group-item-action conversation-item">
                 <div class="conversation-header">
-                    <strong>Percakapan dengan: 
+                    <strong>Conversation with 
                         @if($conversation->user1->id == auth()->id())
-                            {{ $conversation->user2->username }} <!-- Menampilkan nama user2 jika user1 adalah yang sedang login -->
+                            {{ $conversation->user2->username }} 
                         @else
-                            {{ $conversation->user1->username }} <!-- Menampilkan nama user1 jika user2 adalah yang sedang login -->
+                            {{ $conversation->user1->username }} 
                         @endif
                     </strong>
-                    <p class="conversation-preview mb-0">Klik untuk melihat pesan</p>
+                    <p class="conversation-preview mb-0">Click to view message</p>
                 </div>
             </a>
         @endforeach

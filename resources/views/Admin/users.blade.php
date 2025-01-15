@@ -29,12 +29,9 @@
     <nav class="sidebar close">
       <header>
         <div class="image-text">
-          <span class="image">
-            <img src="img/open.png" alt="Logo">
-          </span>
           <div class="text logo-text">
-            <span class="name">Stella Army</span>
-            <span class="profession">Web Developer</span>
+            <span class="name">User Management</span>
+            <span class="profession">Openshop</span>
           </div>
         </div>
         <i class='bx bx-chevron-right toggle'></i>
@@ -117,7 +114,7 @@
               <tr data-id="{{ $user->id }}">
                 <td>
                   @if($user->photo)
-                    <img src="{{ Storage::url($user->photo) }}" alt="{{ $user->photo }}" style="width: 250px;">
+                    <img src="{{ Storage::url($user->photo) }}" alt="{{ $user->photo }}" style="width: 100px;">
                   @else
                     <span>No Image</span>
                   @endif

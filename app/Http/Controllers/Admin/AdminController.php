@@ -27,7 +27,7 @@ class AdminController extends Controller
     // Menampilkan form login
     public function showLoginForm()
     {
-        return view('admin.login');
+        return view('Admin.login');
     }
 
     // Memproses login admin
@@ -90,7 +90,7 @@ class AdminController extends Controller
         'without_image' => Post::whereNull('image_url')->count(), // Posts without an image
     ];
 
-    return view('admin.dashboard', compact('totalUsers', 'totalProducts', 'totalPosts'));
+    return view('Admin.dashboard', compact('totalUsers', 'totalProducts', 'totalPosts'));
 }
 
 
@@ -106,14 +106,14 @@ public function logout(Request $request)
     }
 
     // Kembali ke halaman login tanpa pesan 403
-    return redirect()->route('admin.login');
+    return redirect()->route('admin.login.form');
 }
 
     // Menampilkan daftar pengguna
     public function users()
     {
         $users = User::all(); // Pastikan model User tersedia
-        return view('admin.users', compact('users'));
+        return view('Admin.users', compact('users'));
     }
 
     public function updateUser(Request $request, $id)
@@ -143,7 +143,7 @@ public function logout(Request $request)
         $products = Product::with('user')->get();
 
         // Kirim data ke view
-        return view('admin.products', compact('products'));
+        return view('Admin.products', compact('products'));
     }
 
     public function takedown($id)
@@ -185,7 +185,7 @@ public function untakedown($id)
         // Ambil semua post dengan relasi user
     $posts = Post::with('user')->get();
 
-    return view('admin.conversations', compact('posts'));
+    return view('Admin.conversations', compact('posts'));
     }
 
     // Menampilkan profil admin
@@ -200,7 +200,7 @@ public function untakedown($id)
     }
 
     // Pass the admin data to the view
-    return view('admin.profile', compact('admin'));
+    return view('Admin.profile', compact('admin'));
 }
     public function reports()
 {
@@ -211,7 +211,7 @@ public function untakedown($id)
     $postReports = PostReport::with(['post', 'reporter', 'post.user'])->get();
 
     // Kirim data ke view
-    return view('admin.reports', compact('productReports', 'postReports'));
+    return view('Admin.reports', compact('productReports', 'postReports'));
 }
 
 public function showDetail($id, $type)

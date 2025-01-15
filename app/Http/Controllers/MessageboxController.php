@@ -9,6 +9,7 @@ use App\Models\Message;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use App\Events\MessageSent;
+use Illuminate\Support\Facades\Redis;
 
 class MessageboxController extends Controller
 {
@@ -91,23 +92,33 @@ function decryptMessage($encryptedMessage, $key)
     /**
      * Mengirim pesan baru dalam percakapan tertentu.
      */
-    public function sendMessage(Request $request, Conversation $conversation)
+public function sendMessage($conversationId, Request $request)
 {
+    // Validasi input dari pengguna
     $request->validate([
-        'content' => 'required|string|max:1000',
+        'content' => 'required|string|max:500',
     ]);
 
+    // Ambil ID pengguna yang sedang login
     $userId = Auth::id();
+
+    // Cari percakapan berdasarkan ID
+    $conversation = Conversation::find($conversationId);
+
+    // Cek apakah percakapan ada
+    if (!$conversation) {
+        return response()->json(['message' => 'Conversation not found'], 404);
+    }
 
     // Verifikasi bahwa pengguna adalah bagian dari percakapan
     if ($conversation->user_id_1 !== $userId && $conversation->user_id_2 !== $userId) {
-        abort(403); // Forbidden
+        return response()->json(['message' => 'Forbidden'], 403);
     }
 
     // Enkripsi pesan sebelum menyimpan ke database
     $encryptedContent = $this->encryptMessage($request->input('content'), env('ADMIN_ENCRYPTION_KEY'));
 
-    // Simpan pesan yang terenkripsi
+    // Simpan pesan yang terenkripsi di MySQL
     $message = $conversation->messages()->create([
         'sender_id' => $userId,
         'content' => $encryptedContent,
@@ -115,10 +126,30 @@ function decryptMessage($encryptedMessage, $key)
         'sent_at' => now(),
     ]);
 
-    // Menyiarkan pesan menggunakan event Pusher
-    broadcast(new MessageSent($message)); // Broadcasting event
+    // Simpan pesan juga ke Redis
+    $redisData = [
+        'sender_id' => $userId,
+        'content' => $encryptedContent,
+        'is_read' => false,
+        'sent_at' => now()->toDateTimeString(),
+    ];
 
-    // Redirect ke halaman percakapan setelah pesan terkirim
-    return redirect()->route('message.show', $conversation);
+    Redis::lpush("conversation:{$conversation->id}:messages", json_encode($redisData));
+
+    // Menyiarkan pesan menggunakan event untuk real-time
+    broadcast(new MessageSent($message))->toOthers();
+
+    // Kembalikan respons JSON dengan data pesan yang telah terkirim
+    return response()->json([
+        'status' => 'success',
+        'message' => 'Message sent successfully',
+        'data' => [
+            'id' => $message->id,
+            'content' => $request->input('content'), // Mengembalikan konten asli, bukan yang terenkripsi
+            'sender_id' => $userId,
+            'sent_at' => $message->sent_at->toDateTimeString(),
+        ],
+    ]);
 }
+
 }

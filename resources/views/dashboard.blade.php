@@ -14,7 +14,7 @@
         <div class="top-nav">
         <ul>
             <li class="center-logo">
-                <img src="img/open.png" alt="Logo" class="logo-brand">
+                <img src="img/OPEN.png" alt="Logo" class="logo-brand">
             </li>
             <div class="right-nav">
             <li><a href="{{ route('about') }}">ABOUT</a></li>
@@ -57,18 +57,18 @@
             <div class="footer-section">
                 <i class="fas fa-phone-alt"></i>
                 <h3>Phone</h3>
-                <p>+6281234567</p>
+                <p>+6281117042207</p>
             </div>
             <div class="footer-section">
                 <i class="fas fa-envelope"></i>
                 <h3>Email</h3>
-                <p>shopen@gmail.com</p>
+                <p>openshopid@gmail.com</p>
             </div>
             <div class="footer-section">
                 <h3>Social Media</h3>
                 <div class="social-icons">
-                <a href="https://instagram.com/hereshopen" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://twitter.com/hereshopen" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://instagram.com/openshop" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com/openshop" target="_blank"><i class="fab fa-x-twitter"></i></a>
                 <a href="https://facebook.com/OpenShop" target="_blank"><i class="fab fa-facebook"></i></a>
                 </div>
             </div>

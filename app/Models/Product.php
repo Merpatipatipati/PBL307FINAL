@@ -47,11 +47,10 @@ class Product extends Model
     public $timestamps = true;
 
     // Relasi ke User
-    public function user()
+public function user()
 {
-    return $this->belongsTo(User::class)->active(); // Gunakan scopeActive
+    return $this->belongsTo(User::class); // Hilangkan scopeActive
 }
-
     // Mendapatkan URL gambar dari path yang disimpan
     public function getImageUrlAttribute()
     {

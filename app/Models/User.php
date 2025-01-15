@@ -85,4 +85,8 @@ class User extends Authenticatable
 {
     return $query->where('status', '!=', 'banned');
 }
+public function otps()
+    {
+        return $this->hasMany(Otp::class, 'user_id');
+    }
 }

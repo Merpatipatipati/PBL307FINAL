@@ -50,6 +50,10 @@ return [
         'driver' => 'session',
         'provider' => 'users',  // Gunakan 'users' sebagai provider
     ],
+    'api' => [
+        'driver' => 'session', // Ganti dengan 'token' jika Anda ingin menggunakan token autentikasi
+        'provider' => 'users',
+    ],
 ],
     /*
     |--------------------------------------------------------------------------

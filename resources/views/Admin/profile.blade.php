@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
   <link rel="stylesheet" href="/css/Admin/profile.css">
   <link rel="stylesheet" href="/css/Admin/sidebar-design.css">
-  <script defer src="{{ asset('js/sidebar-function.js') }}"></script>
+<script defer src="{{ asset('js/sidebar-function.js') }}"></script>
 </head>
 <body>
   <div class="dashboard">
@@ -16,9 +16,6 @@
     <nav class="sidebar close">
       <header>
         <div class="image-text">
-          <span class="image">
-            <img src="img/open.png" alt="Logo">
-          </span>
           <div class="text logo-text">
             <span class="name">{{ Auth::user()->name }}</span>
             <span class="profession">Admin</span>

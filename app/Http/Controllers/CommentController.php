@@ -13,7 +13,7 @@ class CommentController extends Controller
     public function storeComment(Request $request, $productId)
 {
     $validated = $request->validate([
-        'content' => 'required|string|max:255',
+        'content' => 'required|string|max:100',
     ]);
 
     // Menyimpan komentar
@@ -32,18 +32,17 @@ class CommentController extends Controller
 
     // Mengambil komentar terkait produk beserta balasan dan informasi pengguna
     $comments = $product->comments()
-        ->with('replies', 'user') // Jika ingin menampilkan balasan dan data pengguna
         ->orderBy('created_at', 'desc')
         ->get();
 
     // Mengembalikan tampilan produk dengan data komentar yang baru ditambahkan
-    return view('products.show', compact('product', 'canUpdate', 'canDelete', 'canReport','comments'));
+    return view('Products.show', compact('product', 'canUpdate', 'canDelete', 'canReport','comments'));
 }
 
 public function addComment(Request $request, $postId)
 {
     $request->validate([
-        'content' => 'required|max:255',
+        'content' => 'required|max:100',
     ]);
 
     $post = Post::findOrFail($postId);
