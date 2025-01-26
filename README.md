@@ -8,6 +8,11 @@ Well Architect SIEM Implementation refers to the good design and implementation 
 ## Features
 
 - **Network Segmentation:** Simplify management by isolating different parts of the network by ensuring that specific resources or services are only accessible to authorized users or systems.
-- **Monitoring and Visualization:** Implements filtering and rate limiting to control and manage traffic during an attack.
-- **Simulation:** Includes DDoS attack simulations to test and refine the system's effectiveness.
-- **Real-time Monitoring:** Provides real-time insights and alerts on network security status.
+- **Monitoring, Visualization & Case Management:** Implements threat detection, security monitoring, performance visualization, cyber threat intelligence and incident response case management.
+- **Alerting and Notification:** Implements alerts sent to external notification systems like Telegram for real-time updates on critical events.
+- **Secure Remote Access:** Provides VPN access for administrators ensures secure remote management of the network.
+- **Backup and Redundancy:** A dedicated backup server for ensures data redundancy and recovery in case of system failures.
+
+![topology](https://github.com/user-attachments/assets/ead64b64-9696-431f-a03c-8cd67308cbd9)
+
+Please read the manual book for more detail about this project. Cheers!
